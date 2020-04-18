@@ -1,0 +1,32 @@
+#Packager: Dimitris Tzemos <dijemos@gmail.com>
+
+pkgname=teams
+pkgver=${pkgver:-$(wget -qO- https://packages.microsoft.com/repos/ms-teams/pool/main/t/teams/|
+	grep teams | grep -Eoi '<a [^>]+>'|
+	grep -Eo 'href="[^\"]+"'|
+	sed "s/href=//"|
+	awk -F'[_]' '{print $2}'|
+	sort -r $1 | head -n1 )}
+pkgrel=1dj
+arch=x86_64
+source=("https://packages.microsoft.com/repos/ms-teams/pool/main/t/teams/teams_${pkgver}_amd64.deb")
+url="http://www.skype.com"
+
+slackdesc=\
+(
+#|-----handy-ruler------------------------------------------------------|
+"Skype (Skype for teams)"
+"Skype is a peer-to-peer Internet telephony network. It competes"
+"against existing open VoIP protocols such as SIP, IAX, and H.323."
+)
+
+
+build() {
+	
+	cd "${SRC}"
+	ar x teams_${pkgver}_amd64.deb || return 1
+	tar -xJC "${PKG}" -f data.tar.xz || return 1
+	rm data.tar.xz control.tar.gz || return 1
+	install -d "${PKG}/usr/share/teams" || return 1
+	rm -rf "${PKG}/opt" || return 1
+} 
