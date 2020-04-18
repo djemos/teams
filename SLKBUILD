@@ -7,6 +7,7 @@ pkgver=${pkgver:-$(wget -qO- https://packages.microsoft.com/repos/ms-teams/pool/
 	sed "s/href=//"|
 	awk -F'[_]' '{print $2}'|
 	sort -r $1 | head -n1 )}
+#pkgver=1.3.00.5153	
 pkgrel=1dj
 arch=x86_64
 source=("https://packages.microsoft.com/repos/ms-teams/pool/main/t/teams/teams_${pkgver}_amd64.deb")
