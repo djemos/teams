@@ -1,17 +1,11 @@
 #Packager: Dimitris Tzemos <dijemos@gmail.com>
 
 pkgname=teams
-pkgver=${pkgver:-$(wget -qO- https://packages.microsoft.com/repos/ms-teams/pool/main/t/teams/|
-	grep teams | grep -Eoi '<a [^>]+>'|
-	grep -Eo 'href="[^\"]+"'|
-	sed "s/href=//"|
-	awk -F'[_]' '{print $2}'|
-	sort -r $1 | head -n1 )}
-#pkgver=1.3.00.5153	
+pkgver=1.3.00.16851
 pkgrel=1dj
 arch=x86_64
-source=("https://packages.microsoft.com/repos/ms-teams/pool/main/t/teams/teams_${pkgver}_amd64.deb")
-url="http://www.skype.com"
+source=("https://packages.microsoft.com/repos/ms-teams/pool/main/t/teams/${pkgname}_${pkgver}_amd64.deb")
+url="https://packages.microsoft.com/repos/ms-teams/pool/main/t/teams-insiders"
 
 slackdesc=\
 (
@@ -25,7 +19,7 @@ slackdesc=\
 build() {
 	
 	cd "${SRC}"
-	ar x teams_${pkgver}_amd64.deb || return 1
+	ar x ${pkgname}_${pkgver}_amd64.deb || return 1
 	tar -xJC "${PKG}" -f data.tar.xz || return 1
 	rm data.tar.xz control.tar.gz || return 1
 	install -d "${PKG}/usr/share/teams" || return 1
