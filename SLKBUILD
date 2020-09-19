@@ -10,9 +10,14 @@ url="https://packages.microsoft.com/repos/ms-teams/pool/main/t/teams-insiders"
 slackdesc=\
 (
 #|-----handy-ruler------------------------------------------------------|
-"Skype (Skype for teams)"
-"Skype is a peer-to-peer Internet telephony network. It competes"
-"against existing open VoIP protocols such as SIP, IAX, and H.323."
+"teams-for-linux (messaging, conferencing and collaboration program)"
+"Microsoft Teams is a unified communications platform that combines"
+"persistent workplace chat, video meetings and file storage."
+"This is the unofficial Microsoft Teams client for Linux by Ivelin"
+"Velkov. It uses the Web App and wrapps it as a standalone application"
+"using Electron."
+""
+"Only the 64bit version is available."
 )
 
 
