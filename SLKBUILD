@@ -1,11 +1,11 @@
 #Packager: Dimitris Tzemos <dijemos@gmail.com>
 
-pkgname=teams
-pkgver=1.3.00.16851
+pkgname=teams-for-linux
+pkgver=2.0.11
 pkgrel=1dj
 arch=x86_64
-source=("https://packages.microsoft.com/repos/ms-teams/pool/main/t/teams/${pkgname}_${pkgver}_amd64.deb")
-url="https://packages.microsoft.com/repos/ms-teams/pool/main/t/teams-insiders"
+source=("https://github.com/IsmaelMartinez/teams-for-linux/releases/download/v$pkgver/teams-for-linux_${pkgver}_amd64.deb")
+url="https://github.com/IsmaelMartinez/teams-for-linux"
 
 slackdesc=\
 (
@@ -13,20 +13,17 @@ slackdesc=\
 "teams-for-linux (messaging, conferencing and collaboration program)"
 "Microsoft Teams is a unified communications platform that combines"
 "persistent workplace chat, video meetings and file storage."
-"This is the unofficial Microsoft Teams client for Linux by Ivelin"
-"Velkov. It uses the Web App and wrapps it as a standalone application"
+"This is the unofficial Microsoft Teams client for Linux."
+"It uses the Web App and wrapps it as a standalone application"
 "using Electron."
 ""
 "Only the 64bit version is available."
 )
 
-
 build() {
 	
-	cd "${SRC}"
+	cd $startdir/src
 	ar x ${pkgname}_${pkgver}_amd64.deb || return 1
-	tar -xJC "${PKG}" -f data.tar.xz || return 1
+	tar -xJC $startdir/pkg -f data.tar.xz || return 1
 	rm data.tar.xz control.tar.gz || return 1
-	install -d "${PKG}/usr/share/teams" || return 1
-	rm -rf "${PKG}/opt" || return 1
 } 
